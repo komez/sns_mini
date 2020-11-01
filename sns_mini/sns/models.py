@@ -23,7 +23,7 @@ class Message(models.Model):
 
 # Groupクラス
 class Group(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, \
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, #CASCADEは親カテゴリが消されると子インスタンスがモデル毎削除される
             related_name='group_owner')
     title = models.CharField(max_length=100)
     

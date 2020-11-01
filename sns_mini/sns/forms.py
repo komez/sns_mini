@@ -30,11 +30,12 @@ class SearchForm(forms.Form):
 # Groupのチェックボックスフォーム
 class GroupCheckForm(forms.Form):
     def __init__(self, user, *args, **kwargs):
-        super(GroupCheckForm, self).__init__(*args, **kwargs)
+        super(GroupCheckForm, self).__init__(*args, **kwargs)#親クラスの初期化メソッドの実行
         public = User.objects.filter(username='public').first()
+        #このクラスのフィールドを設定
         self.fields['groups'] = forms.MultipleChoiceField(
             choices=[(item.title, item.title) for item in \
-                 Group.objects.filter(owner__in=[user,public])],
+                 Group.objects.filter(owner__in=[user,public])],#[]内のどちらかに含まれるオブジェクトを取り出す
             widget=forms.CheckboxSelectMultiple(),
         )
 
